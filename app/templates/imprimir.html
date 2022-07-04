@@ -334,8 +334,76 @@
           </div>
         </div>
       </fieldset>
-
   </form>
-
+    <script>
+    var mensagem1="Inconclusivo";
+    var mensagem2="Aparentemente sem riscos";
+    var mensagem3="Aparentemente sem riscos";
+    
+    var SomaRisco1=0;
+    if ("{{ questionario.um }} ".includes("Não")) 	    SomaRisco1=SomaRisco1+1;
+    if ("{{ questionario.dois }} ".includes("Não"))     SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.tres }} ".includes("Não"))      SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.quatro }} ".includes("Não"))    SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.cinco }} ".includes("Não"))     SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.seis }} ".includes("Não"))      SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.sete }} ".includes("Não"))      SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.oito}} ".includes("Não"))       SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.nove }} ".includes("Não"))      SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.dez }} ".includes("Não"))       SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.onze }} ".includes("Sim"))      SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.doze }} ".includes("Não"))      SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.treze }} ".includes("Não"))     SomaRisco1=SomaRisco1+1; 
+    if("{{ questionario.quatorze }} ".includes("Não"))  SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.quinze }} ".includes ("Não"))   SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.dezesseis }} ".includes("Não")) SomaRisco1=SomaRisco1+1; 
+    if("{{ questionario.dezessete }} ".includes("Não")) SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.dezoito }} ".includes("Sim"))   SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.dezenove }} ".includes("Não"))  SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.vinte}} ".includes("Sim"))      SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.vinteum }} ".includes("Não"))   SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.vintedois }} ".includes("Sim")) SomaRisco1=SomaRisco1+1;
+    if("{{ questionario.vintetres }} ".includes("Não")) SomaRisco1=SomaRisco1+1;
+         
+            if ((SomaRisco1 >= 0) && (SomaRisco1 <= 2))  mensagem1="Baixo Risco"; 
+            if ((SomaRisco1 >= 3) && (SomaRisco1 <= 7))  mensagem1="Risco Moderado"; 
+            if ((SomaRisco1 >= 8) && (SomaRisco1 <= 20)) mensagem1="Alto Risco";
+            
+    var SomaRisco2=0;
+    if("{{ questionario.dez }} ".includes("Não"))       SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.onze}} ".includes("Sim"))       SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.doze }} ".includes("Não"))      SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.treze }} ".includes("Não"))     SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.quatorze }} ".includes("Não"))  SomaRisco2=SomaRisco2+1;  
+    if("{{ questionario.quinze }} ".includes("Não"))    SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.dezesseis }} ".includes("Não")) SomaRisco2=SomaRisco2+1;  
+    if("{{ questionario.dezessete }} ".includes("Não")) SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.dezoito }} ".includes("Sim"))   SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.dezenove }} ".includes("Não"))  SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.vinte }} ".includes("Sim"))     SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.vinteum }} ".includes("Não"))   SomaRisco2=SomaRisco2+1; 
+    if("{{ questionario.vintedois }} ".includes("Sim")) SomaRisco2=SomaRisco2+1;
+    if("{{ questionario.vintetres }} ".includes("Não")) SomaRisco2=SomaRisco2+1;
+            
+          if (SomaRisco2 > 3) mensagem2="Risco para autismo";   
+          
+    var SomaRisco3=0;
+    if("{{ questionario.dois }} ".includes("Não"))      SomaRisco3=SomaRisco3+1;
+    if("{{ questionario.sete }} ".includes("Não"))      SomaRisco3=SomaRisco3+1;
+    if("{{ questionario.nove }} ".includes("Não"))      SomaRisco3=SomaRisco3+1;
+    if("{{ questionario.treze }} ".includes("Não"))     SomaRisco3=SomaRisco3+1;
+    if("{{ questionario.quatorze }} ".includes("Não"))  SomaRisco3=SomaRisco3+1;
+    if("{{ questionario.quinze}} ".includes("Não"))     SomaRisco3=SomaRisco3+1;
+    
+          if (SomaRisco3 > 2) mensagem3="Risco para autismo"; 
+            
+    alert("Nome do Paciente:" + "{{ questionario }}" + "\n" +
+    "Nome do Responsável:" + "{{ questionario.paciente.responsavel }}" + "\n\n" +
+    "Resultados do Teste deste paciente:\n\n" +
+      "Teste 1: " + SomaRisco1 + "\n" + mensagem1 + "\n\n" +
+      "Teste 2: " + SomaRisco2 + "\n" + mensagem2 + "\n\n" +
+      "Teste 3: " + SomaRisco3 + "\n" + mensagem3 + "\n\n" )
+    </script>  
+    
 </div>
 {%endblock%}
