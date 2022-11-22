@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        
+       
         }
 }
 
@@ -90,11 +90,11 @@ DATABASES = {
     
 # DATABASES['default'] = dj_database_url.parse('postgres://univesp-app.herokuapp.com/', conn_max_age=600)
 
-DATABASES = { 'default': dj_database_url.config() }
-SECRET_KEY = 'jorge123'
-DEBUG = True
+# DATABASES = { 'default': dj_database_url.config() }
+# SECRET_KEY = 'jorge123'
+# DEBUG = True
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 7894561
+# DATA_UPLOAD_MAX_MEMORY_SIZE = 7894561
 
     
 # DATABASES = {
@@ -155,4 +155,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
