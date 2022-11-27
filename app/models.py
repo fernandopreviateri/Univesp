@@ -1,7 +1,7 @@
 from distutils.command.upload import upload
 from django.db import models
 
-# Banco de dados Pacinete
+# Banco de dados Paciente
 
 class Paciente(models.Model):
     id = models.AutoField(primary_key=True)

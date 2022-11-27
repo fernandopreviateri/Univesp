@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '66qn%))hpa+gs@q(!8-7#!p6+3g3r=7j&jb0q7ron=t&@1wo-i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,11 +90,11 @@ DATABASES = {
     
 # DATABASES['default'] = dj_database_url.parse('postgres://univesp-app.herokuapp.com/', conn_max_age=600)
 
-# DATABASES = { 'default': dj_database_url.config() }
-# SECRET_KEY = 'jorge123'
-# DEBUG = True
+#DATABASES = { 'default': dj_database_url.config() }
+#SECRET_KEY = 'jorge123'
+#DEBUG = True
 
-# DATA_UPLOAD_MAX_MEMORY_SIZE = 7894561
+DATA_UPLOAD_MAX_MEMORY_SIZE = 7894561
 
     
 # DATABASES = {
@@ -155,4 +155,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-#django_heroku.settings(locals())
+django_heroku.settings(locals())

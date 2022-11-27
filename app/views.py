@@ -1,8 +1,13 @@
 
+import pandas as pd
+import io
+import urllib, base64
+
+from matplotlib import pyplot as plt
+from django.forms import model_to_dict
 from re import template
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
-# Create your views here.
 from django import forms
 from django.utils import timezone
 from app.forms import MyCommentForm, MyCommentFormchoices
@@ -16,8 +21,7 @@ from django.http import HttpResponseForbidden
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect
 #from app.functions import SubirFoto
-
-
+# Create your views here.
 
 def loginUser(request):
     if request.POST:
@@ -84,8 +88,7 @@ class QuestionarioCreateView(CreateView):
     form_class = MyCommentFormchoices
     success_url = reverse_lazy('lista_paciente')
 
-
-        
+    
 
 
 class PacienteCreateView(CreateView):
@@ -95,9 +98,49 @@ class PacienteCreateView(CreateView):
     form_class = MyCommentForm
     success_url = reverse_lazy('lista_paciente')
 
+# Get data_base
 
+def DataBaseQuerySet(request):
+    # Get database object django
+    queryset = [model_to_dict(i) for i in Paciente.objects.all()]
 
-        
+    # Change queryset at DataFrame Pandas
+    dataframe = pd.DataFrame(queryset)
+    
+    # Remove columns DataFrame
+    dataframe = dataframe.drop(columns='foto')
+    dataframe = dataframe.drop(columns='message')
+
+    # Add new column frequencia
+    dataframe['frequencia'] = dataframe.groupby('cidade')['cidade'].transform('count')
+
+    # Plot a graphic and your size
+    fig, ax = plt.subplots(figsize=(14,6))
+
+    # Parameters of graphic
+    bar_color = ['#FFE4C4', '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+          '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf', '#1E90FF', '#00CED1',
+          '#7CFC00', '#D2691E', '#9932CC', '#FFD700', '#FF6347']
+    freq = dataframe['frequencia']
+    cidade = dataframe['cidade']
+    ax.set_ylabel("Qtd de Pacientes", fontsize = 15)
+    ax.tick_params(axis= 'y', labelsize= 10)
+    ax.tick_params(axis= 'x', labelsize= 8, rotation = 20)
+    ax.set_facecolor("#d3d3d3")
+    ax.set_yticks([1 * i for i in dataframe['frequencia']])
+    ax.set_title("Cidades da Microrregião de Araraquara", fontsize = 16)
+    ax.bar(cidade, freq, width=0.5, color=bar_color)
+
+    # Parameters for show
+    fig = plt.gcf()
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
+    return render(request, 'analise.html', {'data' : uri }) 
+
+   
 
 def Imprimir(request, paciente_id):
     questionario = Questionario.objects.get(paciente_id=paciente_id)
@@ -164,7 +207,6 @@ def Questionariosave(request, paciente_id):
         return redirect('lista_paciente')
         
     return render(request, 'questionario2.html',{'paciente':paciente})
-
 
 
 

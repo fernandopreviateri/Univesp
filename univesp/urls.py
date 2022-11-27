@@ -19,13 +19,13 @@ from django.conf.urls.static import static
 from app import views
 from django.contrib import admin
 from django.urls import URLPattern, path
-from app.views import  ListaPaciente, PacienteUpdateView, PacienteDeleteView, PacienteCreateView, QuestionarioCreateView
+from app.views import  ListaPaciente, PacienteUpdateView, PacienteDeleteView, PacienteCreateView, QuestionarioCreateView, DataBaseQuerySet
+
 
 
 
 app_name = 'paciente'
 urlpatterns = [
-    
     path('admin/', admin.site.urls),
     path('', views.logon, name="logon"),
     path('login', views.loginUser, name="login"),
@@ -35,12 +35,10 @@ urlpatterns = [
     path('cadastro/exclui/<pk>', PacienteDeleteView.as_view(), name="exclui_paciente"),
     path('cadastro/', PacienteCreateView.as_view(), name="cadastro_paciente"),
     path('cadastro/<paciente_id>', views.Questionariosave, name="questionario"),
-    #path('cadastro/<paciente_id>', QuestionarioCreateView.as_view(), name="cadastro_paciente"),
-    
-    
+    path('cadastro/<paciente_id>', QuestionarioCreateView.as_view(), name="cadastro_paciente"),
+    path('analise/', views.DataBaseQuerySet, name='analise'),
     path('imprimir/<paciente_id>', views.Imprimir, name="imprimir"),
     #path('cadastro/' , views.SalvarFoto, name="foto"),
-
     #path('cadastro/lista/', ListaPaciente.as_view(), name="lista_paciente"),
    
     

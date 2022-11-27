@@ -63,8 +63,8 @@
         
         <footer class="footer navbar bg-primary" id="footer">             
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; CMRA 2021</span>
-              <span><b>Endereço:</b> Rua Nove de Julho, 3700 Em frente à, Praça João Bernal - Vila Girassol, Araraquara - SP, 14802-277</span>
+            <span>Copyright &copy; CMRA 2022<b><br> Centro Municipal de Referência do Autismo </b><br></span>
+              <span><b>Endereço:</b> Rua Nove de Julho, 3700 Em frente à, Praça João Bernal - Vila Girassol.<br> Araraquara - SP. CEP: </b> 14802-277</span>
                 <p><b>Telefone:</b> (16) 3335-9463</p>
           </div>
         </footer>
@@ -74,6 +74,20 @@
   
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+          {% block libras %}
+              <!-- script para acessibilidade em libras-->
+              <div vw class="enabled">
+                <div vw-access-button class="active"></div>
+                  <div vw-plugin-wrapper>
+                    <div class="vw-plugin-top-wrapper"></div>
+                  </div>
+              </div>
+              <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+              <script>
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+              </script>
+          {% endblock %}
     
   </body>
 </html>

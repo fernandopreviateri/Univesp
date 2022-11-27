@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="../lista"><button type="button"  class="btn btn-primary btn-sm"> Voltar</button></a>
+    </div>    
+</div>
+
+<div id="texto_lado">
+    <div style="position:absolute; margin-left:70%; margin-top:100px; width:300px; height:140px;z-index:1">
+        A analise de dados descritiva visa observar aspectos importantes
+        entre dois, ou mais conjunto de dados.<br><br> 
+        No caso do gráfico ao lado, são usados dois atributos relacionados aos pacientes; 
+        a quantidade de pacientes cadastrados no banco de dados e sua cidade de origem.<br><br>
+        Assim, o gestor tem uma visão ampla e, pode elaborar estratégias
+        de atendimento eficazes para cada grupo de pacientes.<br><br>
+        O gráfico atualiza-se conforme a inserção, atualização e exclusão de cadastro de pacientes no banco de dados.<br><br>
+        As cidades fazem parte da microrregião de Araraquara-SP.
+    </div>
+    <img src="data:image/png;base64,{{ data }}">
+</div>        
+
+{% endblock %}
