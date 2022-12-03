@@ -18,6 +18,7 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+IS_HEROKU = "DYNO" in os.environ
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -26,9 +27,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '66qn%))hpa+gs@q(!8-7#!p6+3g3r=7j&jb0q7ron=t&@1wo-i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if IS_HEROKU:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['*']
+if not IS_HEROKU:
+    DEBUG = True
 
 
 # Application definition
