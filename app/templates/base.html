@@ -6,7 +6,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Cache-Control" content="no-cache">
     <script type="text/javascript">
+    
     $(document).ready(function(){
       $('#telefone').mask('(00) 0000-0000');
       $('.my_table').DataTable();
@@ -39,17 +41,6 @@
   </head>
   <body>
   </br>
-    <div vw class="enabled">
-      <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-     </div>
-    </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="../lista">CMRA</a>
@@ -58,7 +49,6 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarScroll">
               <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-               
               </ul>
             
               </div>
@@ -69,6 +59,8 @@
         {% block contentlista %} {% endblock %}
         
         {% block content %} {% endblock %}
+      
+
         </br>
         
         <footer class="footer navbar bg-primary" id="footer">             
@@ -85,19 +77,19 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-          {% block libras %}
-              <!-- script para acessibilidade em libras-->
-              <div vw class="enabled">
-                <div vw-access-button class="active"></div>
-                  <div vw-plugin-wrapper>
-                    <div class="vw-plugin-top-wrapper"></div>
-                  </div>
+    {% block libras %}
+          <!--script para acessibilidade em libras-->
+          <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+              <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
               </div>
-              <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-              <script>
-                new window.VLibras.Widget('https://vlibras.gov.br/app');
-              </script>
-          {% endblock %}
+          </div>
+          <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+          <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+          </script>
+    {% endblock %}
     
   </body>
 </html>
