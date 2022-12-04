@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import os
 #import django_heroku
-#import psycopg2
-import dj_database_url
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -33,7 +31,7 @@ else:
     ALLOWED_HOSTS = []
 
 if not IS_HEROKU:
-    DEBUG = True
+    DEBUG = False
 
 
 # Application definition
@@ -90,32 +88,9 @@ DATABASES = {
         }
 }
 
-# DATABASE_URL = {
-    # postgres://retrridacqfosp:522465a1c6ee05602afdcc1cae5aa4bec10a8960685c41b8dbf9c319a502e6e0@ec2-23-23-151-191.compute-1.amazonaws.com:5432/dcqh7lvdsiiil0
-    #}
-    
-# DATABASES['default'] = dj_database_url.parse('postgres://univesp-app.herokuapp.com/', conn_max_age=600)
-
-#DATABASES = { 'default': dj_database_url.config() }
-#SECRET_KEY = 'jorge123'
-#DEBUG = True
-
 DATA_UPLOAD_MAX_MEMORY_SIZE = 7894561
 
     
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'db_cmra',
-#         'USER': 'tdxmvxtnffpybr',
-#         'PASSWORD': 'f45c277dee1130269aa0c0208251fcec9932f06db702ca0356d97df0374ab9e4',
-#         'HOST': 'ec2-34-239-241-121.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#         }
-# }
-
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -150,7 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
